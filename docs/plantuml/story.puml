@@ -1,0 +1,27 @@
+@startuml
+actor Patient
+actor MedicalProfessional
+participant "Electronic Medical Record (EMR)" as EMR
+participant "Entity (AI/Telemetry/Domain Model)" as Entity
+
+' Patient initiates an interaction
+Patient -> MedicalProfessional : Start consultation
+
+' Medical Professional accesses EMR for patient details
+MedicalProfessional -> EMR : Retrieve patient record
+EMR --> MedicalProfessional : Send patient data
+
+' Entity observes the interaction and compares data
+MedicalProfessional -> Entity : Consult for additional insight
+Entity --> MedicalProfessional : Provide warnings/suggestions (if any)
+
+' Patient data is updated
+MedicalProfessional -> EMR : Update patient record
+EMR -> Entity : Log interaction details
+
+' Entity observes changes, may notify if specific telemetry matches
+Entity -> MedicalProfessional : Notification (if warnings/suggestions)
+
+' Interaction ends
+MedicalProfessional -> Patient : End consultation
+@enduml

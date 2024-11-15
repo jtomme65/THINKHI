@@ -1,0 +1,41 @@
+@startuml
+actor Patient
+actor MedicalProfessional
+participant "Electronic Medical Record (EMR)" as EMR
+participant "Entity (AI/Telemetry/Domain Model)" as Entity
+
+' Begin detailed consultation flow
+Patient -> MedicalProfessional : Begin detailed consultation
+
+' Gathering vital signs from the patient
+MedicalProfessional -> Patient : Request vital signs (e.g., blood pressure, weight)
+Patient -> MedicalProfessional : Provide vital signs
+
+' Vital signs are recorded in EMR and observed by the Entity
+MedicalProfessional -> EMR : Record new vital signs
+EMR -> Entity : Update with new vital signs
+note right of Entity : Listening and comparing vital signs to historical data
+
+' Medical Professional communicates with the patient about trends
+MedicalProfessional -> Patient : Discuss current and historical trends
+note right of Entity : Entity gathers relevant statements and correlates with vitals
+
+' Entity checks for trends and provides real-time suggestions
+Entity -> MedicalProfessional : Notification (on-the-spot suggestion or warning, if needed)
+
+' Medical Professional discusses additional data (e.g., weight change)
+MedicalProfessional -> Patient : Discuss weight trends and possible reasons
+note right of Entity : Filtering for relevant anecdotal and historical data
+
+' Entity provides real-time correlation
+Entity -> MedicalProfessional : Notification (suggested actions based on trend analysis)
+
+' Continue consultation with patient
+MedicalProfessional -> Patient : Continue discussion on health status
+
+' Entity listens silently if no alerts or trends are significant
+note right of Entity : Silent if no warnings or insights needed
+
+' End of the detailed consultation
+MedicalProfessional -> Patient : End consultation
+@enduml

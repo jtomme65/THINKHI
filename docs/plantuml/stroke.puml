@@ -1,0 +1,28 @@
+@startuml
+title Case Timeline for Diverging Diagnosis
+
+== Initial Assessment ==
+participant "Patient" as Patient
+Patient -> Doctor : Presents with symptoms \n suggestive of stroke
+note right of Patient : Standard protocol follows \n a stroke diagnosis pathway.
+
+== Suspected Stroke Pathway ==
+Doctor -> Imaging : Order brain imaging (CT/MRI) \n for stroke verification
+Doctor -> TestLab : Conduct initial assessments \n (speech, facial droop, arm weakness)
+
+== Divergence Point ==
+note left of Doctor : Divergence due to findings:\n Potential heart attack
+
+Doctor -> Cardiology : Consult cardiology for assessment
+Cardiology -> TestLab : Conduct ECG and blood tests \n for heart attack verification
+
+== Verification Documentation ==
+note left of Doctor : Document reason for divergence:\n "Initial symptoms suggested stroke, \n results indicate heart attack"
+
+== Treatment Adjustment ==
+Doctor -> Pharmacy : Administer heart attack treatment \n (e.g., medication, intervention)
+
+== Follow-up and Final Documentation ==
+Doctor -> Records : Complete final report noting \n diagnostic change and care adjustments
+
+@enduml
